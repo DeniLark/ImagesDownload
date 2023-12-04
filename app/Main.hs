@@ -2,6 +2,10 @@ module Main
   ( main
   ) where
 
+import           Constants
+import           IO.FetchFile
 
 main :: IO ()
-main = putStrLn "Welcome to the Haskell"
+main = do
+  fetchFile urlImage1
+  putStrLn "Done!"

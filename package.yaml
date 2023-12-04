@@ -23,6 +23,7 @@ dependencies:
   - base >= 4.7 && < 5
   - http-conduit
   - bytestring
+  - directory
 
 ghc-options:
   - -Wall
@@ -59,3 +60,4 @@ tests:
       - -with-rtsopts=-N
     dependencies:
       - FilesDownload
+      - hspec
