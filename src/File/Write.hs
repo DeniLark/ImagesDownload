@@ -1,7 +1,7 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module IO.WriteFile where
+module File.Write where
 
 import           Data.Bifunctor                 ( Bifunctor(first) )
 import           Data.ByteString                ( ByteString )

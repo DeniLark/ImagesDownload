@@ -1,4 +1,4 @@
-import           IO.WriteFile
+import           File.Write
 import           Test.Hspec
 
 main :: IO ()

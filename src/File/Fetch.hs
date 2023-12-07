@@ -1,9 +1,9 @@
-module IO.FetchFile where
+module File.Fetch where
 
 import           Network.HTTP.Simple
 
 import           Constants
-import           IO.WriteFile
+import           File.Write
 
 fetchFile :: String -> IO ()
 fetchFile url = do

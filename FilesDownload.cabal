@@ -26,8 +26,8 @@ source-repository head
 library
   exposed-modules:
       Constants
-      IO.FetchFile
-      IO.WriteFile
+      File.Fetch
+      File.Write
   other-modules:
       Paths_FilesDownload
   autogen-modules:

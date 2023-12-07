@@ -3,7 +3,7 @@ module Main
   ) where
 
 import           Constants
-import           IO.FetchFile
+import           File.Fetch
 
 main :: IO ()
 main = do
