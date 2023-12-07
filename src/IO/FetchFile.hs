@@ -5,7 +5,7 @@ import           Network.HTTP.Simple
 import           Constants
 import           IO.WriteFile
 
-fetchFile :: Request -> IO ()
-fetchFile request = do
-  file <- getResponseBody <$> httpBS request
-  saveFile (dirResult <> "/file.jpg") file
+fetchFile :: String -> IO ()
+fetchFile url = do
+  file <- getResponseBody <$> httpBS (parseRequest_ url)
+  saveFile (dirResult <> ('/' : getFileName url)) file

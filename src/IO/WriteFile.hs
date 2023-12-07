@@ -17,34 +17,6 @@ saveFile filePath bytes = doesFileExist filePath >>= \case
 changeFileName :: FilePath -> FilePath
 changeFileName = uncurry (<>) . first increaseFileName . span (/= '.')
 
--- >>> increaseFileName "file(10)"
--- "file(11)"
---
-
--- >>> increaseFileName ""
--- ""
---
-
--- >>> increaseFileName "file"
--- "file(1)"
---
-
--- >>> increaseFileName "fil)e(12)"
--- "fil)e(13)"
---
-
--- >>> increaseFileName "fi(l)e(12)"
--- "fi(l)e(13)"
---
-
--- >>> increaseFileName "fi(le(12)"
--- "fi(le(13)"
---
-
--- >>> increaseFileName "file(12)"
--- "file(13)"
---
-
 data Postfix =
     Start
   | Process String
@@ -65,13 +37,15 @@ increaseFileName = fst . foldr foldFunc ("", Start)
   incTemp :: String -> String
   incTemp = show . (+ 1) . (read :: String -> Int)
 
--- increaseFileName :: FilePath -> FilePath
--- increaseFileName "" = ""
--- increaseFileName fp = let x = span (/= '(') fp in undefined
--- increaseFileName = reverse . helper . reverse
---  where
---   helper "" = ""
---   helper (')' : rest) =
---     let (n :: Int, rest') = first read $ span isDigit rest
---     in  ')' : show (n + 1) <> rest'
---   helper fp = ")1(" <> fp
+getFileName :: FilePath -> FilePath
+getFileName = safeTail . foldr foldFunc ""
+ where
+  foldFunc :: Char -> FilePath -> FilePath
+  foldFunc _   acc@('/' : _) = acc
+  foldFunc '/' acc           = '/' : acc
+  foldFunc ch  ""            = [ch]
+  foldFunc ch  acc           = ch : acc
+
+safeTail :: String -> String
+safeTail "" = ""
+safeTail s  = tail s

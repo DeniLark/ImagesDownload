@@ -28,7 +28,6 @@ library
       Constants
       IO.FetchFile
       IO.WriteFile
-      Lib
   other-modules:
       Paths_FilesDownload
   autogen-modules:

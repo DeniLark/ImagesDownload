@@ -3,6 +3,25 @@ import           Test.Hspec
 
 main :: IO ()
 main = hspec $ do
+  specWriteFileChangeFileName
+  specWriteFileGetFileName
+
+specWriteFileGetFileName :: Spec
+specWriteFileGetFileName = do
+  describe "WriteFile.getFileName" $ do
+    it "empty file path" $ do
+      getFileName "" `shouldBe` ""
+    it "file url with http" $ do
+      getFileName "http://localhost/dir/dir2/file" `shouldBe` "file"
+    it "file url with https" $ do
+      getFileName "https://localhost/dir/dir2/file" `shouldBe` "file"
+    it "file path starts with /" $ do
+      getFileName "/dir/dir2/file" `shouldBe` "file"
+    it "file path doesn't starts with /" $ do
+      getFileName "dir/dir2/file" `shouldBe` "file"
+
+specWriteFileChangeFileName :: Spec
+specWriteFileChangeFileName = do
   describe "WriteFile.changeFileName" $ do
     it "added (1)" $ do
       changeFileName "file.txt" `shouldBe` "file(1).txt"
