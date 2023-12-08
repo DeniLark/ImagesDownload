@@ -9,10 +9,12 @@ import qualified Data.ByteString.Char8         as BC
 import           Data.Char
 import           System.Directory               ( doesFileExist )
 
-saveFile :: FilePath -> ByteString -> IO ()
-saveFile filePath bytes = doesFileExist filePath >>= \case
-  True  -> saveFile (changeFileName filePath) bytes
-  False -> BC.writeFile filePath bytes
+saveFile :: String -> FilePath -> ByteString -> IO ()
+saveFile fileName filePath bytes = doesFileExist filePath >>= \case
+  True  -> saveFile fileName (changeFileName filePath) bytes
+  False -> do
+    BC.writeFile filePath bytes
+    putStrLn $ "File: " <> fileName <> " is saved"
 
 changeFileName :: FilePath -> FilePath
 changeFileName = uncurry (<>) . first increaseFileName . span (/= '.')

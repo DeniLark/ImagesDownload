@@ -8,4 +8,6 @@ import           File.Fetch
 main :: IO ()
 main = do
   fetchFile urlImage1
-  putStrLn "Done!"
+  fetchFile urlImageWrong1
+  fetchFile urlImage2
+  fetchFile urlImageWrong2
