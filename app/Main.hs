@@ -4,10 +4,12 @@ module Main
 
 import           Constants
 import           File.Fetch
+import           HTML.IO
 
 main :: IO ()
 main = do
-  fetchFile urlImage1
-  fetchFile urlImageWrong1
-  fetchFile urlImage2
-  fetchFile urlImageWrong2
+  processPage urlPage1
+  -- fetchFile urlImage1
+  -- fetchFile urlImageWrong1
+  -- fetchFile urlImage2
+  -- fetchFile urlImageWrong2

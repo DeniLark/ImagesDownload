@@ -24,6 +24,8 @@ dependencies:
   - http-conduit
   - bytestring
   - directory
+  - text
+  - zenacy-html
 
 ghc-options:
   - -Wall

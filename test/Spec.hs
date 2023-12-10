@@ -1,10 +1,39 @@
 import           File.Write
+import           HTML.IO
 import           Test.Hspec
 
 main :: IO ()
 main = hspec $ do
   specWriteFileChangeFileName
   specWriteFileGetFileName
+  specGetBaseUrl
+  specAddBaseUrl
+
+specAddBaseUrl :: Spec
+specAddBaseUrl = do
+  describe "HTML.IO.addBaseUrl" $ do
+    it "not add" $ do
+      addBaseUrl "http://site.com/image.png" "http://site.com"
+        `shouldBe` "http://site.com/image.png"
+    it "add" $ do
+      addBaseUrl "/image.png" "http://site.com"
+        `shouldBe` "http://site.com/image.png"
+
+specGetBaseUrl :: Spec
+specGetBaseUrl = do
+  describe "HTML.IO.getBaseUrl" $ do
+    it "http" $ do
+      getBaseUrl "http://site.com" `shouldBe` "http://site.com"
+      getBaseUrl "http://site.com/" `shouldBe` "http://site.com"
+      getBaseUrl "http://site.com/page" `shouldBe` "http://site.com"
+      getBaseUrl "http://site.com?a=a" `shouldBe` "http://site.com"
+
+    it "https" $ do
+      getBaseUrl "https://site.com" `shouldBe` "https://site.com"
+      getBaseUrl "https://site.com/" `shouldBe` "https://site.com"
+      getBaseUrl "https://site.com/page" `shouldBe` "https://site.com"
+      getBaseUrl "https://site.com?a=a" `shouldBe` "https://site.com"
+
 
 specWriteFileGetFileName :: Spec
 specWriteFileGetFileName = do
