@@ -26,6 +26,8 @@ source-repository head
 library
   exposed-modules:
       Constants
+      Data.FilePath
+      Data.URL
       File.Fetch
       File.Write
       HTML.IO

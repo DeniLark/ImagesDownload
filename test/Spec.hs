@@ -1,5 +1,5 @@
+import           Data.URL
 import           File.Write
-import           HTML.IO
 import           Test.Hspec
 
 main :: IO ()
@@ -8,10 +8,21 @@ main = hspec $ do
   specWriteFileGetFileName
   specGetBaseUrl
   specAddBaseUrl
+  specUrlToDirName
+
+specUrlToDirName :: Spec
+specUrlToDirName = do
+  describe "Data.URL.urlToDirName" $ do
+    it "http" $ do
+      urlToDirName "http://site.com" `shouldBe` "site_com"
+    it "https" $ do
+      urlToDirName "https://site.com" `shouldBe` "site_com"
+    it "without http(s)" $ do
+      urlToDirName "site.com" `shouldBe` "site_com"
 
 specAddBaseUrl :: Spec
 specAddBaseUrl = do
-  describe "HTML.IO.addBaseUrl" $ do
+  describe "Data.URL.addBaseUrl" $ do
     it "not add" $ do
       addBaseUrl "http://site.com/image.png" "http://site.com"
         `shouldBe` "http://site.com/image.png"
@@ -21,7 +32,7 @@ specAddBaseUrl = do
 
 specGetBaseUrl :: Spec
 specGetBaseUrl = do
-  describe "HTML.IO.getBaseUrl" $ do
+  describe "Data.URL.getBaseUrl" $ do
     it "http" $ do
       getBaseUrl "http://site.com" `shouldBe` "http://site.com"
       getBaseUrl "http://site.com/" `shouldBe` "http://site.com"

@@ -3,7 +3,6 @@ module File.Fetch where
 import           Control.Exception
 import           Network.HTTP.Simple
 
-import           Constants
 import           File.Write
 import           Network.Exception
 
@@ -16,4 +15,4 @@ fetchFile url = action `catch` handlerHttpException
     request <- parseRequestThrow url
     file    <- getResponseBody <$> httpBS request
     let fileName = getFileName url
-    saveFile fileName (dirResult <> ('/' : fileName)) file
+    saveFile fileName fileName file
