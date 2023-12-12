@@ -16,7 +16,8 @@ import           Network.Exception
 import           Network.URL
 
 processPage :: String -> IO ()
-processPage url = action `catch` handlerHttpException
+processPage url =
+  putStrLn ("Processing url: " <> url) >> action `catch` handlerHttpException
  where
   action :: IO ()
   action = do
