@@ -1,5 +1,5 @@
-import           Data.URL
 import           File.Write
+import           Network.URL
 import           Test.Hspec
 
 main :: IO ()

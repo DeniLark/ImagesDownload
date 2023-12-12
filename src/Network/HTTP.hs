@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module HTML.IO where
+module Network.HTTP where
 
 import           Control.Exception
 import           Data.Text                      ( unpack )
@@ -9,11 +9,11 @@ import           Network.HTTP.Simple
 import           Zenacy.HTML
 
 import           Constants
-import           Data.FilePath
-import           Data.URL
 import           File.Fetch
+import           File.FilePath
 import           HTML.UtilsZenacy
 import           Network.Exception
+import           Network.URL
 
 processPage :: String -> IO ()
 processPage url = action `catch` handlerHttpException

@@ -1,4 +1,4 @@
-module Data.URL where
+module Network.URL where
 
 urlToDirName :: String -> String
 urlToDirName url | take 7 url == "http://"  = replacer $ drop 7 url

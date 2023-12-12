@@ -1,6 +1,6 @@
 {-# LANGUAGE LambdaCase #-}
 
-module Data.FilePath where
+module File.FilePath where
 
 import qualified System.Directory              as SD
 
