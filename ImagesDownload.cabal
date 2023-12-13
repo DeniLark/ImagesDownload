@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 
-name:           FilesDownload
+name:           ImagesDownload
 version:        0.1.0.0
 description:    Please see the README on GitHub at <https://github.com/DeniLark/FilesDownload#readme>
 homepage:       https://github.com/DeniLark/FilesDownload#readme
@@ -35,9 +35,9 @@ library
       Network.URL
       Run
   other-modules:
-      Paths_FilesDownload
+      Paths_ImagesDownload
   autogen-modules:
-      Paths_FilesDownload
+      Paths_ImagesDownload
   hs-source-dirs:
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
@@ -53,14 +53,14 @@ library
 executable FilesDownload-exe
   main-is: Main.hs
   other-modules:
-      Paths_FilesDownload
+      Paths_ImagesDownload
   autogen-modules:
-      Paths_FilesDownload
+      Paths_ImagesDownload
   hs-source-dirs:
       app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      FilesDownload
+      ImagesDownload
     , base >=4.7 && <5
     , bytestring
     , directory
@@ -73,14 +73,14 @@ test-suite FilesDownload-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_FilesDownload
+      Paths_ImagesDownload
   autogen-modules:
-      Paths_FilesDownload
+      Paths_ImagesDownload
   hs-source-dirs:
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      FilesDownload
+      ImagesDownload
     , base >=4.7 && <5
     , bytestring
     , directory
