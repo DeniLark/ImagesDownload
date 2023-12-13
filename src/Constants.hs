@@ -8,6 +8,9 @@ dirResult = "result"
 urlPage1 :: String
 urlPage1 = "https://wallpaperscraft.ru/"
 
+urlPage2 :: String
+urlPage2 = "https://wallpapershq.ru/categories/all/3840x2160"
+
 urlPageWrong1 :: String
 urlPageWrong1 = "https://wwallpaperscraft.ru/"
 

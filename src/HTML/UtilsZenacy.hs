@@ -6,6 +6,14 @@ import qualified Data.Text                     as T
 import           Zenacy.HTML
 
 
+imglinkToLink :: [HTMLNode] -> [Text]
+imglinkToLink = foldr foldFunc []
+ where
+  foldFunc :: HTMLNode -> [Text] -> [Text]
+  foldFunc node = case getElemAttrValue "href" node of
+    ""  -> id
+    src -> (src :)
+
 imgsToSrcs :: [HTMLNode] -> [Text]
 imgsToSrcs = foldr foldFunc []
  where
