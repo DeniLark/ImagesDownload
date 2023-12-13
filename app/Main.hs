@@ -2,7 +2,7 @@ module Main
   ( main
   ) where
 
-import           Run
+import           Run                            ( run )
 
 main :: IO ()
 main = run

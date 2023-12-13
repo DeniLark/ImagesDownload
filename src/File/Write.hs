@@ -6,7 +6,7 @@ module File.Write where
 import           Data.Bifunctor                 ( Bifunctor(first) )
 import           Data.ByteString                ( ByteString )
 import qualified Data.ByteString.Char8         as BC
-import           Data.Char
+import           Data.Char                      ( isDigit )
 import           System.Directory               ( doesFileExist )
 
 saveFile :: String -> FilePath -> ByteString -> IO ()

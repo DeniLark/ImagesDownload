@@ -3,7 +3,12 @@ module HTML.UtilsZenacy where
 
 import           Data.Text                      ( Text )
 import qualified Data.Text                     as T
-import           Zenacy.HTML
+import           Zenacy.HTML                    ( HTMLAttr(htmlAttrVal)
+                                                , HTMLNode(HTMLElement)
+                                                , htmlElemAttrFindName
+                                                , htmlElemGetAttr
+                                                , htmlNodeContent
+                                                )
 
 
 imglinkToLink :: [HTMLNode] -> [Text]

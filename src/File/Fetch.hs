@@ -1,10 +1,15 @@
 module File.Fetch where
 
-import           Control.Exception
-import           Network.HTTP.Simple
+import           Control.Exception              ( catch )
+import           Network.HTTP.Simple            ( getResponseBody
+                                                , httpBS
+                                                , parseRequestThrow
+                                                )
 
-import           File.Write
-import           Network.Exception
+import           File.Write                     ( getFileName
+                                                , saveFile
+                                                )
+import           Network.Exception              ( handlerHttpException )
 
 
 fetchFile :: String -> IO ()

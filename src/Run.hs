@@ -1,7 +1,7 @@
 module Run where
 
-import           Network.HTTP
-import           System.Environment
+import           Network.HTTP                   ( processPage )
+import           System.Environment             ( getArgs )
 
 run :: IO ()
 run = do
@@ -9,3 +9,4 @@ run = do
   case args of
     []   -> putStrLn "No URLs"
     urls -> mapM_ processPage urls
+
