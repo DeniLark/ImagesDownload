@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Network.TargetSites where
 
 import           Data.Text                      ( unpack )

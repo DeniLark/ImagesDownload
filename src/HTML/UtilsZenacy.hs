@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
 module HTML.UtilsZenacy where
 
 import           Data.Text                      ( Text )

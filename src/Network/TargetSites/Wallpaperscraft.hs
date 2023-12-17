@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Network.TargetSites.Wallpaperscraft where
 
 import           Control.Concurrent             ( threadDelay )
