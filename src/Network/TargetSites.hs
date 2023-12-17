@@ -7,13 +7,18 @@ import           File.Fetch                     ( fetchFile )
 import           HTML.UtilsZenacy               ( findElemsByTagName
                                                 , imgsToSrcs
                                                 )
-import           Network.TargetSites.Wallpaperscraft
-                                                ( processWallpaperscraft )
 import           Network.URL                    ( addBaseUrl )
+
+import qualified Network.TargetSites.Wallpaperscraft
+                                               as Wallpaperscraft
+import qualified Network.TargetSites.Wallpapershq
+                                               as Wallpapershq
 
 processorsTargetSites :: [(String, String -> [HTMLNode] -> IO ())]
 processorsTargetSites =
-  [("https://wallpaperscraft.ru", processWallpaperscraft)]
+  [ ("https://wallpaperscraft.ru", Wallpaperscraft.process)
+  , ("https://wallpapershq.ru"   , Wallpapershq.process)
+  ]
 
 processorUniversalSite :: String -> [HTMLNode] -> IO ()
 processorUniversalSite baseUrl html = do

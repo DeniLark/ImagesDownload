@@ -33,6 +33,7 @@ library
       Network.Exception
       Network.TargetSites
       Network.TargetSites.Wallpaperscraft
+      Network.TargetSites.Wallpapershq
       Network.URL
       Run
   other-modules:

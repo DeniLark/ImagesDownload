@@ -1,3 +1,5 @@
+{-# LANGUAGE LambdaCase #-}
+
 module HTML.UtilsZenacy where
 
 import           Data.Text                      ( Text )
@@ -6,6 +8,7 @@ import           Zenacy.HTML                    ( HTMLAttr(htmlAttrVal)
                                                 , HTMLNode(HTMLElement)
                                                 , htmlElemAttrFindName
                                                 , htmlElemGetAttr
+                                                , htmlElemHasID
                                                 , htmlNodeContent
                                                 )
 
@@ -27,6 +30,11 @@ imgsToSrcs = foldr foldFunc []
     src -> (src :)
 
 ------------------------
+findElemById :: Text -> [HTMLNode] -> [HTMLNode]
+findElemById idName = filterNodes p
+ where
+  p :: HTMLNode -> Bool
+  p = htmlElemHasID idName
 
 getElemAttrValue :: Text -> HTMLNode -> Text
 getElemAttrValue attrName =

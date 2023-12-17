@@ -1,4 +1,6 @@
-module Network.TargetSites.Wallpaperscraft
+{-# LANGUAGE OverloadedStrings #-}
+
+module Network.TargetSites.Wallpapershq
   ( process
   ) where
 
@@ -9,9 +11,10 @@ import           Data.Text                      ( Text
 import           Zenacy.HTML                    ( HTMLNode )
 
 import           File.Fetch                     ( fetchFile )
-import           HTML.UtilsZenacy               ( findElemsByClass
+import           HTML.UtilsZenacy               ( findElemById
+                                                , findElemsByClass
+                                                , findElemsByTagName
                                                 , imglinkToLink
-                                                , imgsToSrcs
                                                 )
 import           Network.URL                    ( addBaseUrl
                                                 , htmlFromUrl
@@ -19,12 +22,18 @@ import           Network.URL                    ( addBaseUrl
 
 process :: String -> [HTMLNode] -> IO ()
 process baseUrl html = do
-  let imgUrls = imglinkToLink $ findElemsByClass "wallpapers__link" html
+  let imgUrls = imglinkToLink $ findElemsByTagName "a" $ findElemsByClass
+        "list-wallpapers__item"
+        html
   mapM_ (fetchImage baseUrl) imgUrls
 
 fetchImage :: String -> Text -> IO ()
 fetchImage baseUrl url = do
   threadDelay 2000000
   html <- htmlFromUrl $ (`addBaseUrl` baseUrl) $ unpack url
-  let urlImages = imgsToSrcs $ findElemsByClass "wallpaper__image" html
+
+  let urlImages = imglinkToLink $ findElemsByTagName "a" $ findElemById
+        "photoswipe--gallery"
+        html
   mapM_ (fetchFile . (`addBaseUrl` baseUrl) . unpack) urlImages
+
