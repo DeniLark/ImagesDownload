@@ -31,7 +31,8 @@ library
       File.Write
       HTML.UtilsZenacy
       Network.Exception
-      Network.HTTP
+      Network.TargetSites
+      Network.TargetSites.Wallpaperscraft
       Network.URL
       Run
   other-modules:
