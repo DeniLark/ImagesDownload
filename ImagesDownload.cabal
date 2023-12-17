@@ -31,6 +31,7 @@ library
       File.Write
       HTML.UtilsZenacy
       Network.Exception
+      Network.GeneralProcess
       Network.TargetSites
       Network.TargetSites.Wallpaperscraft
       Network.TargetSites.Wallpapershq

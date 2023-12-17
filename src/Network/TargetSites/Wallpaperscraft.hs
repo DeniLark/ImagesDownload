@@ -3,9 +3,7 @@ module Network.TargetSites.Wallpaperscraft
   ) where
 
 import           Control.Concurrent             ( threadDelay )
-import           Data.Text                      ( Text
-                                                , unpack
-                                                )
+import           Data.Text                      ( unpack )
 import           Zenacy.HTML                    ( HTMLNode )
 
 import           File.Fetch                     ( fetchFile )
@@ -13,6 +11,7 @@ import           HTML.UtilsZenacy               ( findElemsByClass
                                                 , imglinkToLink
                                                 , imgsToSrcs
                                                 )
+import           Network.GeneralProcess         ( processManyOrError )
 import           Network.URL                    ( addBaseUrl
                                                 , htmlFromUrl
                                                 )
@@ -20,11 +19,13 @@ import           Network.URL                    ( addBaseUrl
 process :: String -> [HTMLNode] -> IO ()
 process baseUrl html = do
   let imgUrls = imglinkToLink $ findElemsByClass "wallpapers__link" html
-  mapM_ (fetchImage baseUrl) imgUrls
+  processManyOrError baseUrl
+                     (fetchImage baseUrl . (`addBaseUrl` baseUrl) . unpack)
+                     imgUrls
 
-fetchImage :: String -> Text -> IO ()
+fetchImage :: String -> String -> IO ()
 fetchImage baseUrl url = do
   threadDelay 2000000
-  html <- htmlFromUrl $ (`addBaseUrl` baseUrl) $ unpack url
+  html <- htmlFromUrl url
   let urlImages = imgsToSrcs $ findElemsByClass "wallpaper__image" html
-  mapM_ (fetchFile . (`addBaseUrl` baseUrl) . unpack) urlImages
+  processManyOrError url (fetchFile . (`addBaseUrl` baseUrl) . unpack) urlImages

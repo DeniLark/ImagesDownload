@@ -1,5 +1,8 @@
 module Constants where
 
+msgErrorGettingPage :: String
+msgErrorGettingPage = "Failed to parse data"
+
 dirResult :: FilePath
 dirResult = "result"
 
