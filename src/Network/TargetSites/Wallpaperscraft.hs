@@ -6,12 +6,13 @@ import           Control.Concurrent             ( threadDelay )
 import           Data.Text                      ( unpack )
 import           Zenacy.HTML                    ( HTMLNode )
 
-import           File.Fetch                     ( fetchFile )
 import           HTML.UtilsZenacy               ( findElemsByClass
                                                 , imglinkToLink
                                                 , imgsToSrcs
                                                 )
-import           Network.GeneralProcess         ( processManyOrError )
+import           Network.GeneralProcess         ( processManyOrError
+                                                , processOneImage
+                                                )
 import           Network.URL                    ( addBaseUrl
                                                 , htmlFromUrl
                                                 )
@@ -19,6 +20,7 @@ import           Network.URL                    ( addBaseUrl
 process :: String -> [HTMLNode] -> IO ()
 process baseUrl html = do
   let imgUrls = imglinkToLink $ findElemsByClass "wallpapers__link" html
+  putStrLn $ "Found images: " <> show (length imgUrls)
   processManyOrError baseUrl
                      (fetchImage baseUrl . (`addBaseUrl` baseUrl) . unpack)
                      imgUrls
@@ -28,4 +30,4 @@ fetchImage baseUrl url = do
   threadDelay 2000000
   html <- htmlFromUrl url
   let urlImages = imgsToSrcs $ findElemsByClass "wallpaper__image" html
-  processManyOrError url (fetchFile . (`addBaseUrl` baseUrl) . unpack) urlImages
+  processManyOrError url (processOneImage baseUrl . unpack) urlImages

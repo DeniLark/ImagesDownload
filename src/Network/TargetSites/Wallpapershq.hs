@@ -8,13 +8,14 @@ import           Control.Concurrent             ( threadDelay )
 import           Data.Text                      ( unpack )
 import           Zenacy.HTML                    ( HTMLNode )
 
-import           File.Fetch                     ( fetchFile )
 import           HTML.UtilsZenacy               ( findElemById
                                                 , findElemsByClass
                                                 , findElemsByTagName
                                                 , imglinkToLink
                                                 )
-import           Network.GeneralProcess         ( processManyOrError )
+import           Network.GeneralProcess         ( processManyOrError
+                                                , processOneImage
+                                                )
 import           Network.URL                    ( addBaseUrl
                                                 , htmlFromUrl
                                                 )
@@ -24,6 +25,7 @@ process baseUrl html = do
   let imgUrls = imglinkToLink $ findElemsByTagName "a" $ findElemsByClass
         "list-wallpapers__item"
         html
+  putStrLn $ "Found images: " <> show (length imgUrls)
   processManyOrError baseUrl
                      (fetchImage baseUrl . (`addBaseUrl` baseUrl) . unpack)
                      imgUrls
@@ -36,5 +38,5 @@ fetchImage baseUrl url = do
   let urlImages = imglinkToLink $ findElemsByTagName "a" $ findElemById
         "photoswipe--gallery"
         html
-  processManyOrError url (fetchFile . (`addBaseUrl` baseUrl) . unpack) urlImages
+  processManyOrError url (processOneImage baseUrl . unpack) urlImages
 

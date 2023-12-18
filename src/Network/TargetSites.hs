@@ -25,6 +25,7 @@ processorUniversalSite :: String -> [HTMLNode] -> IO ()
 processorUniversalSite baseUrl html = do
   let imgs    = findElemsByTagName "img" html
       imgUrls = imgsToSrcs imgs
+  putStrLn $ "Found images: " <> show (length imgUrls)
   processManyOrError baseUrl
                      (fetchFile . (`addBaseUrl` baseUrl) . unpack)
                      imgUrls
