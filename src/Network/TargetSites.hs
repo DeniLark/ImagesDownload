@@ -9,6 +9,7 @@ import           HTML.UtilsZenacy               ( findElemsByTagName
                                                 )
 import           Network.URL                    ( addBaseUrl )
 
+import           Network.GeneralProcess
 import qualified Network.TargetSites.Wallpaperscraft
                                                as Wallpaperscraft
 import qualified Network.TargetSites.Wallpapershq
@@ -23,5 +24,7 @@ processorsTargetSites =
 processorUniversalSite :: String -> [HTMLNode] -> IO ()
 processorUniversalSite baseUrl html = do
   let imgs    = findElemsByTagName "img" html
-      imgSrcs = imgsToSrcs imgs
-  mapM_ (fetchFile . (`addBaseUrl` baseUrl) . unpack) imgSrcs
+      imgUrls = imgsToSrcs imgs
+  processManyOrError baseUrl
+                     (fetchFile . (`addBaseUrl` baseUrl) . unpack)
+                     imgUrls
