@@ -20,4 +20,4 @@ fetchFile url = action `catch` handlerHttpException
     request <- parseRequestThrow url
     file    <- getResponseBody <$> httpBS request
     let fileName = getFileName url
-    saveFile fileName fileName file
+    saveFile fileName file

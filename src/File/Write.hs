@@ -9,11 +9,11 @@ import qualified Data.ByteString.Char8         as BC
 import           Data.Char                      ( isDigit )
 import           System.Directory               ( doesFileExist )
 
-saveFile :: String -> FilePath -> ByteString -> IO ()
-saveFile fileName filePath bytes = doesFileExist filePath >>= \case
-  True  -> saveFile fileName (changeFileName filePath) bytes
+saveFile :: FilePath -> ByteString -> IO ()
+saveFile fileName bytes = doesFileExist fileName >>= \case
+  True  -> saveFile (changeFileName fileName) bytes
   False -> do
-    BC.writeFile filePath bytes
+    BC.writeFile fileName bytes
     putStrLn $ "File: " <> fileName <> " is saved"
 
 changeFileName :: FilePath -> FilePath
