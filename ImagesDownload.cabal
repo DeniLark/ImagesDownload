@@ -33,6 +33,7 @@ library
       Network.Exception
       Network.GeneralProcess
       Network.TargetSites
+      Network.TargetSites.SevenThemes
       Network.TargetSites.Wallpaperscraft
       Network.TargetSites.Wallpapershq
       Network.URL

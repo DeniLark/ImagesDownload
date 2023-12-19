@@ -10,15 +10,19 @@ import           HTML.UtilsZenacy               ( findElemsByTagName
 import           Network.URL                    ( addBaseUrl )
 
 import           Network.GeneralProcess
+import qualified Network.TargetSites.SevenThemes
+                                               as SevenThemes
 import qualified Network.TargetSites.Wallpaperscraft
                                                as Wallpaperscraft
 import qualified Network.TargetSites.Wallpapershq
                                                as Wallpapershq
 
+
 processorsTargetSites :: [(String, String -> [HTMLNode] -> IO ())]
 processorsTargetSites =
   [ ("https://wallpaperscraft.ru", Wallpaperscraft.process)
   , ("https://wallpapershq.ru"   , Wallpapershq.process)
+  , ("https://7themes.su"        , SevenThemes.process)
   ]
 
 processorUniversalSite :: String -> [HTMLNode] -> IO ()

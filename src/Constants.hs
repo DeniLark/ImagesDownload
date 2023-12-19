@@ -12,6 +12,9 @@ urlPage1 = "https://wallpaperscraft.ru/"
 urlPage2 :: String
 urlPage2 = "https://wallpapershq.ru/categories/all/3840x2160"
 
+urlPage3 :: String
+urlPage3 = "https://7themes.su/photo/hd_wallpapers/22"
+
 urlPageWrong1 :: String
 urlPageWrong1 = "https://wwallpaperscraft.ru/"
 

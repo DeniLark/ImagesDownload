@@ -10,5 +10,6 @@ processManyOrError _   k as = mapM_ k as
 
 processOneImage :: String -> String -> IO ()
 processOneImage baseUrl urlImage = do
-  putStrLn ("Processing url: " <> urlImage)
-  fetchFile $ (`addBaseUrl` baseUrl) urlImage
+  let url = addBaseUrl urlImage baseUrl
+  putStrLn ("Processing url: " <> url)
+  fetchFile url
