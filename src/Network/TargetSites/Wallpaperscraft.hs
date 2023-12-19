@@ -20,7 +20,6 @@ import           Network.URL                    ( addBaseUrl
 process :: String -> String -> [HTMLNode] -> IO ()
 process baseUrl url html = do
   let imgUrls = imglinkToLink $ findElemsByClass "wallpapers__link" html
-  putStrLn $ "Found images: " <> show (length imgUrls)
   processManyOrError url
                      (fetchImage baseUrl . (`addBaseUrl` baseUrl) . unpack)
                      imgUrls

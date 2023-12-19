@@ -16,7 +16,6 @@ import           Network.GeneralProcess         ( processManyOrError
 process :: String -> String -> [HTMLNode] -> IO ()
 process baseUrl url html = do
   let imgUrls = imglinkToLink $ thumbsToLink $ findElemsByClass "thumb" html
-  putStrLn $ "Found images: " <> show (length imgUrls)
   processManyOrError url (processOneImage baseUrl . unpack) imgUrls
 
 thumbsToLink :: [HTMLNode] -> [HTMLNode]

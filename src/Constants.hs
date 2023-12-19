@@ -1,7 +1,7 @@
 module Constants where
 
 msgNoImageFound :: String
-msgNoImageFound = "No image found"
+msgNoImageFound = "No images found"
 
 dirResult :: FilePath
 dirResult = "result"

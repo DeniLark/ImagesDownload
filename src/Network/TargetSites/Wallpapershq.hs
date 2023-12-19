@@ -25,7 +25,6 @@ process baseUrl url html = do
   let imgUrls = imglinkToLink $ findElemsByTagName "a" $ findElemsByClass
         "list-wallpapers__item"
         html
-  putStrLn $ "Found images: " <> show (length imgUrls)
   processManyOrError url
                      (fetchImage baseUrl . (`addBaseUrl` baseUrl) . unpack)
                      imgUrls
