@@ -29,4 +29,4 @@ processPage url = do
   withCurrentDirectory (dirResult <> ('/' : dirName)) $ do
     let processor = fromMaybe processorUniversalSite
           $ lookup baseUrl processorsTargetSites
-    processor baseUrl html
+    processor baseUrl url html

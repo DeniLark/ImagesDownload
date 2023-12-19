@@ -1,11 +1,11 @@
 module Network.GeneralProcess where
 
-import           Constants                      ( msgErrorGettingPage )
+import           Constants                      ( msgNoImageFound )
 import           File.Fetch                     ( fetchFile )
 import           Network.URL                    ( addBaseUrl )
 
 processManyOrError :: String -> (a -> IO b) -> [a] -> IO ()
-processManyOrError url _ [] = putStrLn $ url <> ": " <> msgErrorGettingPage
+processManyOrError url _ [] = putStrLn $ url <> ": " <> msgNoImageFound
 processManyOrError _   k as = mapM_ k as
 
 processOneImage :: String -> String -> IO ()

@@ -1,7 +1,7 @@
 module Constants where
 
-msgErrorGettingPage :: String
-msgErrorGettingPage = "Failed to parse data"
+msgNoImageFound :: String
+msgNoImageFound = "No image found"
 
 dirResult :: FilePath
 dirResult = "result"
