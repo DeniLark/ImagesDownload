@@ -1,0 +1,19 @@
+Correct
+  https://wallpaperscraft.ru/
+  https://wallpapershq.ru/categories/all/3840x2160
+  https://7themes.su/photo/hd_wallpapers/22
+
+Wrong
+  https://wwallpaperscraft.ru/
+
+
+Images
+  Correct
+    https://w0.peakpx.com/wallpaper/586/961/HD-wallpaper-haskell-black-logo-programming-language-grid-metal-background-haskell-artwork-creative-programming-language-signs-haskell-logo.jpg
+
+    https://raw.githubusercontent.com/pittsburgh-haskell/pittsburgh-haskell-logo/master/pittsburgh-haskell-256.png
+
+  Wrong
+    https://w0.peakpxx.com/wallpaper/586/961/HD-wallpaper-haskell-black-logo-programming-language-grid-metal-background-haskell-artwork-creative-programming-language-signs-haskell-logo.jpg
+
+    https://raw.ggithubusercontent.com/pittsburgh-haskell/pittsburgh-haskell-logo/master/pittsburgh-haskell-256.png
