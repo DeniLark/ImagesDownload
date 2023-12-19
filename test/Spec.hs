@@ -29,6 +29,11 @@ specAddBaseUrl = do
     it "add" $ do
       addBaseUrl "/image.png" "http://site.com"
         `shouldBe` "http://site.com/image.png"
+    it "url starts //" $ do
+      addBaseUrl "//site.com/file.jpg" "https://site.com"
+        `shouldBe` "https://site.com/file.jpg"
+      addBaseUrl "//site.com/file.jpg" "http://site.com"
+        `shouldBe` "http://site.com/file.jpg"
 
 specGetBaseUrl :: Spec
 specGetBaseUrl = do

@@ -31,9 +31,15 @@ urlToDirName url | take 7 url == "http://"  = replacer $ drop 7 url
 
 
 addBaseUrl :: String -> String -> String
-addBaseUrl ""          = (<> "")
-addBaseUrl s@('/' : _) = (<> s)
-addBaseUrl s           = const s
+addBaseUrl ""                  baseUrl = baseUrl <> ""
+addBaseUrl url@('/' : '/' : _) baseUrl = getProtocolFromUrl baseUrl <> url
+addBaseUrl url@('/'       : _) baseUrl = baseUrl <> url
+addBaseUrl url                 _       = url
+
+getProtocolFromUrl :: String -> String
+getProtocolFromUrl url | take 7 url == "http://"  = "http:"
+                       | take 8 url == "https://" = "https:"
+                       | otherwise                = url
 
 getBaseUrl :: String -> String
 getBaseUrl url
