@@ -18,4 +18,6 @@
 1. Скачать или клонировать этот репозиторий
 2. Открыть терминал в директории с файлом README.md
 3. Выполнить в терминале `stack run <url>`.
-   Например `stack run https://wallpaperscraft.ru/catalog/space`
+   Например:
+
+   `stack run https://wallpaperscraft.ru/catalog/space`
